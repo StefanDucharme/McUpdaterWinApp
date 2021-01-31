@@ -138,12 +138,12 @@ namespace MCUpdater
             {
                 throw new Exception(fileLocation.Text + " does not exist");
             }
-
-            Log("Unzipping");
-
+            
             var extension = Path.GetExtension(fileLocation.Text);
 
             var extractedLocation = fileLocation.Text.Replace(extension, string.Empty);
+
+            Log("Unzipping " + fileLocation.Text + " to " + extractedLocation);
 
             if (Directory.Exists(extractedLocation))
             {
@@ -162,10 +162,10 @@ namespace MCUpdater
             {
                 throw new Exception(toUpdateLocation.Text + " does not exist");
             }
+            
+            var newZipLocation = toUpdateLocation.Text + "-" + DateTime.Now.ToString("yyyy-MM-dd") + ".zip";
 
-            Log("Backing up");
-
-            var newZipLocation = toUpdateLocation.Text + "-" + DateTime.Now + ".zip";
+            Log("Backing up " + toUpdateLocation.Text + " to " + newZipLocation);
 
             if (File.Exists(newZipLocation))
             {
@@ -262,8 +262,8 @@ namespace MCUpdater
             //todo config on how to get version
             var extension = Path.GetExtension(fileLocation.Text);
             var extensionless = fileLocation.Text.Replace(extension, string.Empty);
-            var version = fileLocation.Text.Split('-')[1];
-            File.AppendAllText(toUpdateLocation + "\\updateLog.txt", "Updated to " + version + Environment.NewLine);
+            var version = extensionless.Split('-')[1];
+            File.AppendAllText(toUpdateLocation.Text + "\\updateLog.txt", "Updated to " + version + Environment.NewLine);
         }
 
         private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
