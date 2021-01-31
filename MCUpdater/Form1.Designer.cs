@@ -30,14 +30,13 @@
         {
             this.chooseFilesButton = new System.Windows.Forms.Button();
             this.fileLocation = new System.Windows.Forms.TextBox();
-            this.unzip = new System.Windows.Forms.Button();
-            this.backup = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toUpdateLocation = new System.Windows.Forms.TextBox();
             this.chooseFolderToUpdate = new System.Windows.Forms.Button();
-            this.update = new System.Windows.Forms.Button();
-            this.message = new System.Windows.Forms.Label();
+            this.fullProcess = new System.Windows.Forms.Button();
+            this.message = new System.Windows.Forms.TextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // chooseFilesButton
@@ -56,26 +55,6 @@
             this.fileLocation.Name = "fileLocation";
             this.fileLocation.Size = new System.Drawing.Size(695, 20);
             this.fileLocation.TabIndex = 1;
-            // 
-            // unzip
-            // 
-            this.unzip.Location = new System.Drawing.Point(12, 415);
-            this.unzip.Name = "unzip";
-            this.unzip.Size = new System.Drawing.Size(75, 23);
-            this.unzip.TabIndex = 2;
-            this.unzip.Text = "Unzip";
-            this.unzip.UseVisualStyleBackColor = true;
-            this.unzip.Click += new System.EventHandler(this.unzip_click);
-            // 
-            // backup
-            // 
-            this.backup.Location = new System.Drawing.Point(93, 415);
-            this.backup.Name = "backup";
-            this.backup.Size = new System.Drawing.Size(75, 23);
-            this.backup.TabIndex = 3;
-            this.backup.Text = "Backup";
-            this.backup.UseVisualStyleBackColor = true;
-            this.backup.Click += new System.EventHandler(this.backup_click);
             // 
             // label1
             // 
@@ -112,24 +91,32 @@
             this.chooseFolderToUpdate.UseVisualStyleBackColor = true;
             this.chooseFolderToUpdate.Click += new System.EventHandler(this.chooseFolderToUpdate_click);
             // 
-            // update
+            // fullProcess
             // 
-            this.update.Location = new System.Drawing.Point(174, 415);
-            this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(75, 23);
-            this.update.TabIndex = 8;
-            this.update.Text = "Update";
-            this.update.UseVisualStyleBackColor = true;
-            this.update.Click += new System.EventHandler(this.update_click);
+            this.fullProcess.Location = new System.Drawing.Point(12, 415);
+            this.fullProcess.Name = "fullProcess";
+            this.fullProcess.Size = new System.Drawing.Size(156, 23);
+            this.fullProcess.TabIndex = 10;
+            this.fullProcess.Text = "Unzip, Backup, and Update";
+            this.fullProcess.UseVisualStyleBackColor = true;
+            this.fullProcess.Click += new System.EventHandler(this.fullProcess_click);
             // 
             // message
             // 
-            this.message.AutoSize = true;
-            this.message.Location = new System.Drawing.Point(12, 228);
+            this.message.Location = new System.Drawing.Point(12, 114);
+            this.message.Multiline = true;
             this.message.Name = "message";
-            this.message.Size = new System.Drawing.Size(49, 13);
-            this.message.TabIndex = 9;
-            this.message.Text = "message";
+            this.message.ReadOnly = true;
+            this.message.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.message.Size = new System.Drawing.Size(775, 295);
+            this.message.TabIndex = 11;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // Form1
             // 
@@ -137,13 +124,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 450);
             this.Controls.Add(this.message);
-            this.Controls.Add(this.update);
+            this.Controls.Add(this.fullProcess);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.toUpdateLocation);
             this.Controls.Add(this.chooseFolderToUpdate);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.backup);
-            this.Controls.Add(this.unzip);
             this.Controls.Add(this.fileLocation);
             this.Controls.Add(this.chooseFilesButton);
             this.Name = "Form1";
@@ -156,14 +141,13 @@
         #endregion
         private System.Windows.Forms.Button chooseFilesButton;
         private System.Windows.Forms.TextBox fileLocation;
-        private System.Windows.Forms.Button unzip;
-        private System.Windows.Forms.Button backup;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox toUpdateLocation;
         private System.Windows.Forms.Button chooseFolderToUpdate;
-        private System.Windows.Forms.Button update;
-        private System.Windows.Forms.Label message;
+        private System.Windows.Forms.Button fullProcess;
+        private System.Windows.Forms.TextBox message;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
