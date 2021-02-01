@@ -132,7 +132,7 @@
             this.Controls.Add(this.fileLocation);
             this.Controls.Add(this.chooseFilesButton);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "MCUpdater";
             this.ResumeLayout(false);
             this.PerformLayout();
 
