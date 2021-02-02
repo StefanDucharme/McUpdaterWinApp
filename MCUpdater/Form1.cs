@@ -34,6 +34,13 @@ namespace MCUpdater
                 if (result == DialogResult.OK)
                 {
                     fileLocation.Text = zipDialog.FileName;
+
+                    var version = GetVersion();
+
+                    if (!string.IsNullOrWhiteSpace(version))
+                    {
+                        txtVersion.Text = version;
+                    }
                 }
 
                 //Console.WriteLine(result);
@@ -118,6 +125,7 @@ namespace MCUpdater
                 chooseFolderToUpdate.Enabled = false;
                 fileLocation.Enabled = false;
                 toUpdateLocation.Enabled = false;
+                txtVersion.Enabled = false;
 
                 if (backgroundWorker1.IsBusy != true)
                 {
@@ -140,7 +148,7 @@ namespace MCUpdater
             }
             
             var extension = Path.GetExtension(fileLocation.Text);
-
+            
             var extractedLocation = fileLocation.Text.Replace(extension, string.Empty);
 
             Log("Unzipping " + fileLocation.Text + " to " + extractedLocation);
@@ -154,6 +162,21 @@ namespace MCUpdater
 
             Log("Finished unzipping");
             return extractedLocation;
+        }
+
+        private string GetVersion()
+        {
+            var extension = Path.GetExtension(fileLocation.Text);
+
+            var extensionless = fileLocation.Text.Replace(extension, string.Empty);
+            var parts = extensionless.Split('-');
+
+            if (parts.Length == 2)
+            {
+                return parts[1];
+            }
+
+            return string.Empty;
         }
 
         private void Backup()
@@ -260,10 +283,8 @@ namespace MCUpdater
         {
             Log("Creating/updating updateLog.txt");
             //todo config on how to get version
-            var extension = Path.GetExtension(fileLocation.Text);
-            var extensionless = fileLocation.Text.Replace(extension, string.Empty);
-            var version = extensionless.Split('-')[1];
-            File.AppendAllText(toUpdateLocation.Text + "\\updateLog.txt", "Updated to " + version + Environment.NewLine);
+            
+            File.AppendAllText(toUpdateLocation.Text + "\\updateLog.txt", "Updated to " + txtVersion.Text + Environment.NewLine);
         }
 
         private void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
@@ -333,6 +354,7 @@ namespace MCUpdater
             chooseFolderToUpdate.Enabled = true;
             fileLocation.Enabled = true;
             toUpdateLocation.Enabled = true;
+            txtVersion.Enabled = true;
 
             var result = MessageBox.Show("Update complete", "Done!", MessageBoxButtons.OK);
 

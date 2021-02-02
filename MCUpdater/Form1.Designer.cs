@@ -37,6 +37,8 @@
             this.fullProcess = new System.Windows.Forms.Button();
             this.message = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtVersion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // chooseFilesButton
@@ -68,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 64);
+            this.label2.Location = new System.Drawing.Point(12, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 7;
@@ -76,14 +78,14 @@
             // 
             // toUpdateLocation
             // 
-            this.toUpdateLocation.Location = new System.Drawing.Point(12, 88);
+            this.toUpdateLocation.Location = new System.Drawing.Point(12, 92);
             this.toUpdateLocation.Name = "toUpdateLocation";
             this.toUpdateLocation.Size = new System.Drawing.Size(695, 20);
             this.toUpdateLocation.TabIndex = 6;
             // 
             // chooseFolderToUpdate
             // 
-            this.chooseFolderToUpdate.Location = new System.Drawing.Point(102, 59);
+            this.chooseFolderToUpdate.Location = new System.Drawing.Point(102, 63);
             this.chooseFolderToUpdate.Name = "chooseFolderToUpdate";
             this.chooseFolderToUpdate.Size = new System.Drawing.Size(102, 23);
             this.chooseFolderToUpdate.TabIndex = 5;
@@ -103,12 +105,12 @@
             // 
             // message
             // 
-            this.message.Location = new System.Drawing.Point(12, 114);
+            this.message.Location = new System.Drawing.Point(12, 118);
             this.message.Multiline = true;
             this.message.Name = "message";
             this.message.ReadOnly = true;
             this.message.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.message.Size = new System.Drawing.Size(775, 295);
+            this.message.Size = new System.Drawing.Size(695, 291);
             this.message.TabIndex = 11;
             // 
             // backgroundWorker1
@@ -118,11 +120,29 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(124, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Version";
+            // 
+            // txtVersion
+            // 
+            this.txtVersion.Location = new System.Drawing.Point(172, 6);
+            this.txtVersion.Name = "txtVersion";
+            this.txtVersion.Size = new System.Drawing.Size(100, 20);
+            this.txtVersion.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 450);
+            this.ClientSize = new System.Drawing.Size(720, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.message);
             this.Controls.Add(this.fullProcess);
             this.Controls.Add(this.label2);
@@ -148,6 +168,8 @@
         private System.Windows.Forms.Button fullProcess;
         private System.Windows.Forms.TextBox message;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtVersion;
     }
 }
 
